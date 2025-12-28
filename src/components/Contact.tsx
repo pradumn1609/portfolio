@@ -10,8 +10,8 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_atoevge",        
-        "template_uei4sku",       
+        "service_atoevge",      
+        "template_uei4sku",     
         e.currentTarget,
         "DIC4ePpsa9iNZwJnC"    
       )
@@ -22,8 +22,8 @@ export default function Contact() {
           setTimeout(() => setSubmitted(false), 4000);
         },
         (error) => {
-          alert("Failed to send message. Try again!");
-          console.error(error);
+          console.error("EmailJS error:", error);
+          alert("Message failed. Check console.");
         }
       );
   };
@@ -31,28 +31,25 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-slate-600">
             Have a project or opportunity? Let’s talk.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Left */}
+          {/* LEFT */}
           <div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">
-              Contact Details
-            </h3>
+            <h3 className="text-2xl font-bold mb-6">Contact Details</h3>
 
             <div className="space-y-4">
               <a
                 href="mailto:pradumnpathak1609@gmail.com"
-                className="flex items-center gap-4 p-4 bg-red-500 text-white rounded-lg hover:scale-105 transition"
+                className="flex items-center gap-4 p-4 bg-red-500 text-white rounded-lg"
               >
                 <Mail /> pradumnpathak1609@gmail.com
               </a>
@@ -60,7 +57,7 @@ export default function Contact() {
               <a
                 href="https://github.com/pradumn1609"
                 target="_blank"
-                className="flex items-center gap-4 p-4 bg-slate-800 text-white rounded-lg hover:scale-105 transition"
+                className="flex items-center gap-4 p-4 bg-slate-800 text-white rounded-lg"
               >
                 <Github /> GitHub
               </a>
@@ -68,21 +65,21 @@ export default function Contact() {
               <a
                 href="https://linkedin.com/in/pradumnpathak"
                 target="_blank"
-                className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-lg hover:scale-105 transition"
+                className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-lg"
               >
                 <Linkedin /> LinkedIn
               </a>
             </div>
           </div>
 
-          {/* Right */}
+          {/* RIGHT FORM */}
           <form onSubmit={sendEmail} className="space-y-6">
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               required
-              className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg"
+              className="w-full px-4 py-3 border-2 rounded-lg"
             />
 
             <input
@@ -90,21 +87,24 @@ export default function Contact() {
               name="email"
               placeholder="Your Email"
               required
-              className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg"
+              className="w-full px-4 py-3 border-2 rounded-lg"
             />
+
+            {/* 🔴 REQUIRED FOR EMAIL DELIVERY */}
+            <input type="hidden" name="reply_to" />
 
             <textarea
               name="message"
               rows={5}
               placeholder="Your Message"
               required
-              className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg resize-none"
+              className="w-full px-4 py-3 border-2 rounded-lg resize-none"
             />
 
             <button
               type="submit"
               disabled={submitted}
-              className="w-full px-6 py-4 bg-blue-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition disabled:bg-green-600"
+              className="w-full px-6 py-4 bg-blue-600 text-white rounded-lg flex justify-center gap-2 disabled:bg-green-600"
             >
               {submitted ? (
                 <>
